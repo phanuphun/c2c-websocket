@@ -1,9 +1,9 @@
 {
   "name": "espmock",
   "version": "1.0.0",
-  "main": "esp.js",
+  "main": "clientA.js",
   "scripts": {
-    "dev": "nodemon esp.js",
+    "dev": "nodemon clientA.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

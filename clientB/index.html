@@ -15,18 +15,16 @@
     </div>
 
     <script>
-        // เชื่อมต่อกับ WebSocket ของ Server
-        const socket = new WebSocket("ws://191.20.207.53:81/ws");
+        const socket = new WebSocket("ws://192.168.1.127:81/ws");
         socket.onopen = () => {
             console.log('WebSocket connection established');
 
-            // **ขั้นตอนที่ 1: Register event** เมื่อเชื่อมต่อสำเร็จ
+            // Register
             const registerMessage = {
                 event: "register",
-                id: "clientB"  // ID ของ client ที่จะใช้ลงทะเบียน
+                id: "client-B"
             };
 
-            // ส่งข้อความ register ไปยัง server
             socket.send(JSON.stringify(registerMessage));
             console.log('Sent register event:', registerMessage);
         };
@@ -35,9 +33,8 @@
             const data = JSON.parse(event.data);
             console.log('Received data:', data);
 
-            if (data.event == 'my_event') {
-                console.log('Received my_event:', data.data);
-                // ทำบางอย่างกับข้อมูลที่ได้รับ
+            if (data.event == 'forward_mc_data') {
+                console.log('Received my_event:', data.message);
             }
         };
 

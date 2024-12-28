@@ -1,7 +1,7 @@
 const express = require('express');
 const WebSocket = require('ws');
 
-const HOST = '191.20.207.53';
+const HOST = '192.168.1.127';
 const PORT = 81;
 const PATH = '/ws';           // WebSocket Path
 
@@ -34,7 +34,6 @@ webSocket.on('connection', (ws) => {
                 ws.id = data.id; // set id to connection
                 clients.set(ws.id, ws);
                 console.log(`Client registered with id: ${ws.id}`);
-
                 // Reponse to client 
                 ws.send(
                     JSON.stringify({
@@ -49,7 +48,8 @@ webSocket.on('connection', (ws) => {
                 console.log('mc message', data.message)
             }
 
-            const clientB = clients.get("Client-B");  // get client id registered
+            const clientB = clients.get("client-B");  // get client id registered
+
             if (clientB) {
                 clientB.send(JSON.stringify({
                     event: "forward_mc_data",
